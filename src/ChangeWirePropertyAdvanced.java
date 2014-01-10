@@ -34,6 +34,7 @@
  * @date August 28, 2009
  */
 import com.mentor.chs.api.IXAbstractConductor;
+import com.mentor.chs.api.IXAbstractPin;
 import com.mentor.chs.api.IXIntegratorDesign;
 import com.mentor.chs.api.IXSignal;
 import com.mentor.chs.api.IXWire;
@@ -53,7 +54,7 @@ import java.util.Set;
 
 import javax.swing.Icon;
 
-public class ChangeWireProperty implements IXIntegratorAction 
+public class ChangeWirePropertyAdvanced implements IXIntegratorAction 
     {
     IXApplicationContext cntx;
     public String[] props = { "TPS", "Document" };
@@ -67,40 +68,47 @@ public class ChangeWireProperty implements IXIntegratorAction
 
     public boolean execute(IXApplicationContext applicationContext)
     {
-        cntx = applicationContext;
-        cntx.getOutputWindow().clear();
+         cntx = applicationContext;
+         cntx.getOutputWindow().clear();
          IXIntegratorDesign IntegratorDesign =(IXIntegratorDesign) cntx.getCurrentDesign();
          Set<IXSignal> signallist= IntegratorDesign.getSignals();
          for(IXSignal signal: signallist)
             {
-            IXOutputWindow outputWindow = cntx.getOutputWindow();
-            //final IXAttributeSetter attributeSetter = conn.getAttributeSetter();
-            // if (attributeSetter == null) 
-                {
-               // outputWindow.println(signal.getAttribute("Name"));
-                
-                                //return false;
+                IXOutputWindow outputWindow = cntx.getOutputWindow();
+
                 //可以找到所有的子net
                 final IXAttributeSetter SignalattributeSetter = signal.getAttributeSetter();
                 Set<IXAbstractConductor> childsignallist=signal.getFunctionalConductors();
                 for(IXAbstractConductor childsignal: childsignallist)
                         {
+                            //找到子信号线的pin信息
+                           Set<IXAbstractPin> childPins = childsignal.getAbstractPins();
+                           for(IXAbstractPin childPin: childPins )
+                           {
+                               //找到
+                                Set<IXWire> Wirellist=signal.getWires();
+                                for(IXWire Wire: Wirellist)
+                                {
+                                    
+                                    
+                                     final IXAttributeSetter attributeSetter = Wire.getAttributeSetter();
+                                     //outputWindow.println("wire:+"+Wire.getAttribute("Name"));
+                                     if(!"".equals(signal.getProperty("WireName"))&& signal.getProperty("WireName")!=null)
+                                     {
+                                         attributeSetter.addProperty("WireName", signal.getProperty("WireName"));
+                                         outputWindow.println(signal.getAttribute("Name")+"_Mated wire_:"+Wire.getAttribute("Name")+"_has been added property: WireName : "+signal.getProperty("WireName"));
+                                     }
+                                }
+                               
+                           }
                             if(childsignal.getAttribute("Name")==signal.getAttribute("Name"))
                             {
                                 if(signal.getProperty("WireName")==null||"".equals(signal.getProperty("WireName")))
                                 SignalattributeSetter.addProperty("WireName",childsignal.getProperty("WireName"));
                             }
 
-        //                     IXSignal SignalWire= (IXSignal) childsignal;
-        //                     Set<IXWire> wirelist = SignalWire.getWires();
-        //                     for(IXWire wire: wirelist)
-        //                     {
-        //                         outputWindow.println(wire.getAttribute("Name"));
-        //                     }
-        //                     outputWindow.println("childup");
                         }
-//                 outputWindow.println("null");
-                
+ 
                 Set<IXWire> Wirellist=signal.getWires();
                 for(IXWire Wire: Wirellist)
                 {
@@ -111,45 +119,9 @@ public class ChangeWireProperty implements IXIntegratorAction
                          attributeSetter.addProperty("WireName", signal.getProperty("WireName"));
                          outputWindow.println(signal.getAttribute("Name")+"_Mated wire_:"+Wire.getAttribute("Name")+"_has been added property: WireName : "+signal.getProperty("WireName"));
                      }
-                    
                 }
                 outputWindow.println("");
-                
-
-//                 
-                 
-                 
-                 }
-            
-//         IXIntegratorDesign IntegratorDesign =(IXIntegratorDesign) cntx.getCurrentDesign();
-//         Set<IXSignal> signallist= IntegratorDesign.getConnectivity().getWires();
-//         for(IXSignal signal: signallist)
-//            {
-//            IXOutputWindow outputWindow = cntx.getOutputWindow();
-//            //final IXAttributeSetter attributeSetter = conn.getAttributeSetter();
-//            // if (attributeSetter == null) 
-//            {
-//                outputWindow.println(signal.getAttribute("Name"));
-//                //return false;
-//                Set<IXAbstractConductor> childsignallist=signal.getFunctionalConductors();
-//                for(IXAbstractConductor childsignal: childsignallist)
-//                {
-//                     outputWindow.println(childsignal.getAttribute("Name"));
-//                }
-//                 outputWindow.println("null");
-//            }
-            
-            
-//            PropertyValue = conn.getProperty(OldProperty);
-//            //if(conn.getProperty(OldProperty)!=null)
-//                {
-//                    attributeSetter.addProperty("ss","ss");
-//                    //attributeSetter.removeProperty(OldProperty);
-//                    //attributeSetter.addProperty(NewProperty, PropertyValue);
-//                }
-//        
-//            
-//            outputWindow.println(conn.getAttribute("Name")+":"+"   Property:"+OldProperty+"has been removed"+"    Property:"+NewProperty+"has been added");
+ 
             }
          return true;
     }
@@ -181,11 +153,11 @@ public class ChangeWireProperty implements IXIntegratorAction
     }
 
     public String getDescription() {
-        return "[ Mentor ] Get WireName Property from signal";
+        return "[ Mentor ] Get WireName Property from signal A";
     }
 
     public String getName() {
-        return "[ Mentor ] Get WireName Property from signal";
+        return "[ Mentor ] Get WireName Property from signal A";
     }
 
    
