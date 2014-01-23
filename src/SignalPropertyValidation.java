@@ -44,10 +44,10 @@ public class SignalPropertyValidation implements IXIntegratorDRCheck ,IXLogicDRC
         if (obj instanceof IXSignal) 
         {
             IXSignal wire = (IXSignal) obj;
-            String startMaterial = wire.getProperty("WireName");
+            String startMaterial = wire.getProperty("Wire name");
            // String endMaterial = wire.getProperty("EndTerminalSpec");
             if (startMaterial == null || "".equals(startMaterial)) {
-                reporter.report(Severity.Warning, "Signal {0} missing Peoperty: WireName.", wire);
+                reporter.report(Severity.Warning, "Signal {0} missing Peoperty: Wire name.", wire);
             }
 //            if (endMaterial == null || "".equals(startMaterial)) {
 //                reporter.report(Severity.Warning, "Wire {0} missing EndMaterialSpec.", wire);
@@ -56,10 +56,10 @@ public class SignalPropertyValidation implements IXIntegratorDRCheck ,IXLogicDRC
         if (obj instanceof IXNet) 
         {
             IXNet wire = (IXNet) obj;
-            String startMaterial = wire.getProperty("WireName");
+            String startMaterial = wire.getProperty("Wire name");
            // String endMaterial = wire.getProperty("EndTerminalSpec");
             if (startMaterial == null || "".equals(startMaterial)) {
-                reporter.report(Severity.Warning, "Signal {0} missing Peoperty: WireName.", wire);
+                reporter.report(Severity.Warning, "Signal {0} missing Peoperty: Wire name.", wire);
             }
 //            if (endMaterial == null || "".equals(startMaterial)) {
 //                reporter.report(Severity.Warning, "Wire {0} missing EndMaterialSpec.", wire);
@@ -76,11 +76,11 @@ public class SignalPropertyValidation implements IXIntegratorDRCheck ,IXLogicDRC
     }
 
     public String getDescription() {
-        return "Verify Signal property: WireName";
+        return "Verify Signal property: Wire name";
     }
 
     public String getName() {
-        return "Verify Signal property: WireName";
+        return "Verify Signal property: Wire name";
     }
 
     public String getVersion() {

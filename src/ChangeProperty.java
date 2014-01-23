@@ -76,27 +76,27 @@ public class ChangeProperty implements IXLogicAction, IXIntegratorAction, IXHarn
 //        NewProperty= dialog.newValue.toString();
 //         Iterator i$;
 //        // IXConnector conn;
-         Set<IXWire> Connlist = cntx.getCurrentDesign().getConnectivity().getWires();
-         for(IXWire conn: Connlist)
-            {
-            IXOutputWindow outputWindow = cntx.getOutputWindow();
-            final IXAttributeSetter attributeSetter = conn.getAttributeSetter();
-            if (attributeSetter == null) 
-            {
-                outputWindow.println("ERROR: not in read/write mode. Can't change: " + conn);
-                return false;
-            }
-            PropertyValue = conn.getProperty(OldProperty);
-            //if(conn.getProperty(OldProperty)!=null)
-                {
-                    attributeSetter.addProperty("ss","ss");
-                    //attributeSetter.removeProperty(OldProperty);
-                    //attributeSetter.addProperty(NewProperty, PropertyValue);
-                }
-        
-            
-            outputWindow.println(conn.getAttribute("Name")+":"+"   Property:"+OldProperty+"has been removed"+"    Property:"+NewProperty+"has been added");
-            }
+//         Set<IXWire> Connlist = cntx.getCurrentDesign().getConnectivity().getWires();
+//         for(IXWire conn: Connlist)
+//            {
+//            IXOutputWindow outputWindow = cntx.getOutputWindow();
+//            final IXAttributeSetter attributeSetter = conn.getAttributeSetter();
+//            if (attributeSetter == null) 
+//            {
+//                outputWindow.println("ERROR: not in read/write mode. Can't change: " + conn);
+//                return false;
+//            }
+//            PropertyValue = conn.getProperty(OldProperty);
+//            //if(conn.getProperty(OldProperty)!=null)
+//                {
+//                    attributeSetter.addProperty("ss","ss");
+//                    //attributeSetter.removeProperty(OldProperty);
+//                    //attributeSetter.addProperty(NewProperty, PropertyValue);
+//                }
+//        
+//            
+//            outputWindow.println(conn.getAttribute("Name")+":"+"   Property:"+OldProperty+"has been removed"+"    Property:"+NewProperty+"has been added");
+//            }
          return true;
     }
  public String getVersion() {

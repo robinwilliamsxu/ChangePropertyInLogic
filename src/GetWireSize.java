@@ -119,7 +119,7 @@ public class GetWireSize implements IXHarnessAction
     }
 
     public Trigger[] getTriggers() {
-        return new Trigger[] { Trigger.ContextMenu, Trigger.MainMenu };
+        return new Trigger[] {  };
     }
 
     public String getDescription() {

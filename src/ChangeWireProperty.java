@@ -87,8 +87,8 @@ public class ChangeWireProperty implements IXIntegratorAction
                         {
                             if(childsignal.getAttribute("Name")==signal.getAttribute("Name"))
                             {
-                                if(signal.getProperty("WireName")==null||"".equals(signal.getProperty("WireName")))
-                                SignalattributeSetter.addProperty("WireName",childsignal.getProperty("WireName"));
+                                if(signal.getProperty("Wire name")==null||"".equals(signal.getProperty("Wire name")))
+                                SignalattributeSetter.addProperty("Wire name",childsignal.getProperty("Wire name"));
                             }
 
         //                     IXSignal SignalWire= (IXSignal) childsignal;
@@ -106,10 +106,10 @@ public class ChangeWireProperty implements IXIntegratorAction
                 {
                      final IXAttributeSetter attributeSetter = Wire.getAttributeSetter();
                      //outputWindow.println("wire:+"+Wire.getAttribute("Name"));
-                     if(!"".equals(signal.getProperty("WireName"))&& signal.getProperty("WireName")!=null)
+                     if(!"".equals(signal.getProperty("Wire name"))&& signal.getProperty("Wire name")!=null)
                      {
-                         attributeSetter.addProperty("WireName", signal.getProperty("WireName"));
-                         outputWindow.println(signal.getAttribute("Name")+"_Mated wire_:"+Wire.getAttribute("Name")+"_has been added property: WireName : "+signal.getProperty("WireName"));
+                         attributeSetter.addProperty("Wire name", signal.getProperty("Wire name"));
+                         outputWindow.println(signal.getAttribute("Name")+"_Mated wire_:"+Wire.getAttribute("Name")+"_has been added property: WireName : "+signal.getProperty("Wire name"));
                      }
                     
                 }
@@ -154,7 +154,7 @@ public class ChangeWireProperty implements IXIntegratorAction
          return true;
     }
  public String getVersion() {
-        return "0.4";
+        return "1.0";
     }
     public String getLongDescription() {
         return "[ Mentor ] Change Wire Property from signal";
@@ -181,11 +181,11 @@ public class ChangeWireProperty implements IXIntegratorAction
     }
 
     public String getDescription() {
-        return "[ Mentor ] Get WireName Property from signal";
+        return "[ Mentor ] Get Wire name Property from signal";
     }
 
     public String getName() {
-        return "[ Mentor ] Get WireName Property from signal";
+        return "[ Mentor ] Get Wire name Property from signal";
     }
 
    
